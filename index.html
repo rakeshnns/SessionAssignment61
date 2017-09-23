@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Assignment6.1</title>
+	<script type="text/javascript">
+		function submit(){
+		 	var empid  = document.getElementById("EmployeeID").value; 
+		 	var basicsal= document.getElementById("BasicSalary").value;
+		 	var totalhr= document.getElementById("TotalHour").value;
+
+            // Conversion to NUmeric values
+            var Basicsal = parseInt(basicsal);
+            var Basicsal1 = parseInt(basicsal);
+            var Totalhr  = parseInt(totalhr);
+            var empid1 = parseInt(empid);
+
+            
+            //Average working hour in a month.
+            var avghr    = Totalhr/30;                          
+            if (isNaN(Basicsal) == false && isNaN(Totalhr) == false && isNaN(avghr) == false && isNaN(empid1) == false){   //If loop1
+
+		 	if (Basicsal >= 15000 && avghr > 10) {              //If loop2
+
+		 		Basicsal = Basicsal + (Basicsal * .1);          //10% hike in salary
+		 		var bonus = Basicsal - Basicsal1                //bonus amount
+                printfunction();
+		 	 }                                                  //End of If loop2    
+		 	 else{                                              //Else for IF loop2 
+                Basicsal = Basicsal + (Basicsal * .05);         //5% hike in salary 
+                var bonus = Basicsal - Basicsal1                //bonus amount
+                printfunction();
+		 	 }                                                  //End of Else for IF loop2
+            }                                                   // End of If loop1
+            else{                                               //Else for IF loop1
+                alert("Please enter valid values in input fields.");
+            }                                                   //End of Else for IF loop1
+            // function for print
+            function printfunction(){
+             /*   document.getElementById("EmployeeID").disabled = true;  
+                document.getElementById("BasicSalary").disabled = true;  
+                document.getElementById("TotalHour").disabled = true;  
+                document.getElementById("submit").disabled = true; 
+                document.getElementById("submit").disabled = true; */
+                // disabling all the input elements
+                var x = document.getElementsByTagName("input");
+                var i;
+                for (i = 0; i < x.length; i++) {
+                x[i].disabled = true;
+                }
+                document.getElementById("print").style.display = 'block';
+                document.getElementById("next").style.display = 'block';
+
+
+            	document.getElementById("print").innerHTML =
+            	"********************************************************" +"<br>"+
+            	"Employee ID:"+ empid1 +"<br>"+
+            	"Total Salay:"+ Basicsal +"<br>"+
+            	"Avg   Hours:"+ avghr +"<br>"+
+            	"Bonus      :"+ bonus +"**"+"<br>"+
+            	"********************************************************"
+
+            }
+		}
+        // function for next entry
+		function next() {
+			document.getElementById("next").style.display = 'none';
+			document.getElementById("print").style.display = 'none';
+            
+            var x = document.getElementsByTagName("input");
+                var i;
+                for (i = 0; i < x.length; i++) {
+                x[i].disabled = false;
+
+                if(i< x.length - 1){
+                x[i].value = 0;}
+
+                } 
+
+		}
+	</script>
+</head>
+<body>
+	
+     Employee ID:<input type="number" name="EmployeeID" id="EmployeeID" placeholder="Employee ID"> 
+     BasicSalary:<input type="number" name="BasicSalary" id="BasicSalary" placeholder="Monthly Basic salary"> 
+     TotalHourMn:<input type="number" name="TotalHour" id="TotalHour" placeholder="Hours worked in a month."> 
+     <input type="submit" value="Submit" name="submit" id="submit" onclick="submit()">
+    
+     <div id="print"></div>
+     <button type="button" style="display: none;" onclick="next()" id="next">Next</button>
+
+
+</body>
+</html>
